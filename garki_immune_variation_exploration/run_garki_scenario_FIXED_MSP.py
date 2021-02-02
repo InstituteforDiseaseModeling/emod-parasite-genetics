@@ -22,7 +22,7 @@ cb = DTKConfigBuilder.from_files(config_name ='C:\git\emod-parasite-genetics\gar
 
 cb.update_params({
     "Demographics_Filenames": ["Garki_single_demographics.json"],
-    "Campaign_Filename": "campaign_ParasiteGenetics.json",
+    "Campaign_Filename": "campaign_ParasiteGenetics_62_63.json",
     "Malaria_Strain_Model": "FALCIPARUM_RANDOM_STRAIN",
     "Falciparum_MSP_Variants": 100,
     "Falciparum_Nonspecific_Types": 20,
