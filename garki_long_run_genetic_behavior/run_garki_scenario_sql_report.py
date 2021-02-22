@@ -10,15 +10,16 @@ from immunity_investigations.var_gene_interventions import add_var_gene_outbreak
 
 years = 30 # length of simulation, in years
 num_seeds = 5
-report_year = 0
-years_to_report = 30
+report_year = 29
+years_to_report = 1
 
-major_allele_frequency = 124
-minor_allele_frequency = 1
+major_allele_frequency = 119
+minor_allele_frequency = 6
 # exp_name = f'CoTransmission_no_seasonality_start_report_{report_start}'
 
 var_gene_randomness = 'FIXED_MSP'
-exp_name = f'FPG_longrun_MAF_{major_allele_frequency}_{minor_allele_frequency}_{var_gene_randomness}_{years_to_report}years'
+exp_name = f'FPG_longrun_MAF_{major_allele_frequency}_{minor_allele_frequency}_{var_gene_randomness}_{years_to_report}years_no_EIR_sweep'
+# exp_name = 'test_new_exe_crossover_fixed'
 # Setup ----------------------------------------------------------------------------------------------------------
 # config_path = os.path.join('.', 'inputs','config.json')
 cb = DTKConfigBuilder.from_files(config_name ='C:\git\emod-parasite-genetics\garki_long_run_genetic_behavior\inputs\config.json',
@@ -48,8 +49,8 @@ cb.update_params({
         "Sporozoites_Per_Oocyst_Distribution": "GAUSSIAN_DISTRIBUTION",
         "Sporozoites_Per_Oocyst_Gaussian_Mean": 10000,
         "Sporozoites_Per_Oocyst_Gaussian_Std_Dev": 1000,
-        "Crossover_Gamma_K": 2000.0,
-        "Crossover_Gamma_Theta": 100.0,
+        "Crossover_Gamma_K": 2.0,
+        "Crossover_Gamma_Theta": 0.38,
         "Barcode_Genome_Locations": [
             311500,
             1116500,
@@ -209,12 +210,15 @@ add_malaria_sql_report(cb,
 #                     ]
 # )
 
+
 update_vector_params(cb)
 builder = ModBuilder.from_list(
     [
-            [
-                ModFn(DTKConfigBuilder.set_param,'Run_Number',seed)
-            ]
+        [
+
+            ModFn(DTKConfigBuilder.set_param, 'Run_Number', seed)
+        ]
+
         for seed in range(num_seeds)
     ]
 )

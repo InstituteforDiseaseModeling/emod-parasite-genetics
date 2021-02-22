@@ -15,12 +15,7 @@ from simtools.SetupParser import SetupParser
 from scipy import interpolate
 import os
 
-mpl.rcParams['pdf.fonttype'] = 42
-if not SetupParser.initialized:
-    SetupParser.init('HPC')
-
-wdir = os.path.join(os.getcwd(),'output')
-
+wdir = os.getcwd()
 
 def CompareValues(messages, var, exp, act):
     """
@@ -102,12 +97,11 @@ class MalariaSqlReport:
         self.conn = None
         self.cursor = None
 
-    def Open(self, filename, messages):
+    def Open(self, filename):
         """
         Open the database specified by filename and prepare for queries
         """
         self.fn = filename
-
         self.conn = sqlite3.connect(self.fn)
         self.conn.row_factory = lambda cursor, row: row[0]  # makes the output lists of values instead of tuples
         self.cursor = self.conn.cursor()
@@ -156,7 +150,7 @@ def application(output_path="output"):
     campaign.Read(campaign_fn, messages)
 
     sql_db = MalariaSqlReport()
-    sql_db.Open(sql_db_fn, messages)
+    sql_db.Open(sql_db_fn)
 
     # Get the expected allele frequencies from the campaign file
     exp_allele_freqs = campaign.GetBarcodeAlleleFrequencies(messages)
@@ -191,7 +185,7 @@ def application(output_path="output"):
 class Genetics_Analyzer(BaseAnalyzer):
     def __init__(self, output_fname):
         super(Genetics_Analyzer, self).__init__()
-        self.filenames = ['output/MalariaSqlReport.db']
+        self.filenames = ['output/InsetChart.json','output/MalariaSqlReport.db']
         self.output_fname = output_fname
 
 
@@ -199,7 +193,7 @@ class Genetics_Analyzer(BaseAnalyzer):
 
         simdata = pd.DataFrame()
         sql_db = MalariaSqlReport()
-        sql_db.Open(self.filenames[0],messages=[])
+        sql_db.Open(filename = r'C:\Users\jorussell\Downloads\MalariaSqlReport_test_62.db')
         sql_db.GetDataAsInsetChartChannel(channel_name='Infected')
 
         sql_db.Close()
@@ -218,7 +212,7 @@ class Genetics_Analyzer(BaseAnalyzer):
 if __name__ == '__main__' :
 
 
-    expids = ['50fab7b5-b764-eb11-a2dd-c4346bcb7271']
+    expids = ['ad854768-8c65-eb11-a2dd-c4346bcb7271']
 
 
     expnames = ['base_demo']
