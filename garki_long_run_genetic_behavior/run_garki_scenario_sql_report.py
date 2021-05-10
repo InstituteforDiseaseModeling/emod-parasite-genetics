@@ -3,7 +3,7 @@ from dtk.generic.climate import set_climate_constant
 from dtk.vector.species import update_species_param, set_species_param
 from simtools.SetupParser import SetupParser
 from simtools.ExperimentManager.ExperimentManagerFactory import ExperimentManagerFactory
-from simtools.ModBuilder import  ModFn, ModBuilder
+from simtools.ModBuilder import ModFn, ModBuilder
 from malaria.reports.MalariaReport import add_summary_report, add_malaria_sql_report
 from immunity_investigations.var_gene_interventions import add_var_gene_outbreak
 # General --------------------------------------------------------------------------------------------------------

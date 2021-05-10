@@ -5,7 +5,6 @@ from simtools.SetupParser import SetupParser
 from simtools.ExperimentManager.ExperimentManagerFactory import ExperimentManagerFactory
 from simtools.ModBuilder import  ModFn, ModBuilder
 from malaria.reports.MalariaReport import add_summary_report, add_malaria_sql_report
-from immunity_investigations.var_gene_interventions import add_var_gene_outbreak
 import numpy as np
 # General --------------------------------------------------------------------------------------------------------
 
@@ -14,10 +13,10 @@ num_seeds = 5
 report_year = 25
 years_to_report = 5
 
-major_allele_frequency = 119
-minor_allele_frequency = 6
+major_allele_frequency = 62
+minor_allele_frequency = 63
 
-population_scale_factor = 1.0
+population_scale_factor = 0.5
 # exp_name = f'CoTransmission_no_seasonality_start_report_{report_start}'
 
 var_gene_randomness = 'FIXED_MSP'
